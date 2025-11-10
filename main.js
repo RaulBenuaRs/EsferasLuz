@@ -5,7 +5,7 @@ let sliderDetail;
 let sliderScale;
 
 function setup() {
-  createCanvas(1920, 1080);
+  createCanvas(windowWidth, windowHeight); // 🖥️ pantalla completa
   noStroke();
   colorMode(HSL, 360, 100, 100, 1);
   textFont('Courier New');
@@ -33,7 +33,6 @@ function setup() {
   sliderScale.position(30, 180);
   sliderScale.style('width', '200px');
 
-  // 🎨 Estilo visual
   styleAllSliders();
 }
 
@@ -43,7 +42,7 @@ function draw() {
 
   video.loadPixels();
 
-  let baseHue = 220; // 🎨 hue fijo (azul violeta)
+  let baseHue = 220;
   let baseColor = color(baseHue, 70, 50);
 
   let lightControl = sliderLight.value();
@@ -61,6 +60,11 @@ function draw() {
   text("Tolerancia Rep.", 30, 90);
   text("Detalle", 30, 130);
   text("Tamaño", 30, 170);
+}
+
+// 🪟 Adaptar canvas si se redimensiona la ventana
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function drawCameraWithGradient(video, baseColor, lightControl, tileSize, scaleFactor, tolerance) {
